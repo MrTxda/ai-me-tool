@@ -42,21 +42,27 @@
             align-items: center;
             padding: 1rem;
         }
-        #ai-response-container-risk, #ai-response-container-advice {
-            min-height: 12rem; /* h-48 equivalent */
+        #ai-response-container-risk, #ai-response-container-advice, #aiResponseContainerDesign {
+            min-height: 12rem;
             overflow-y: auto;
         }
-        .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #3498db;
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            animation: spin 1s linear infinite;
+        #aiResponseRisk, #aiResponseAdvice, #aiResponseDesign {
+            display: grid;
+            gap: 1rem;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        #aiResponseRisk > *, #aiResponseAdvice > *, #aiResponseDesign > * {
+            margin-bottom: 0.5rem;
+        }
+        #aiResponseRisk h1, #aiResponseAdvice h1, #aiResponseDesign h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        #aiResponseRisk h2, #aiResponseAdvice h2, #aiResponseDesign h2 {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        #aiResponseRisk p, #aiResponseAdvice p, #aiResponseDesign p {
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
@@ -64,8 +70,39 @@
 
     <div id="page-container" class="snap-container">
         
-        <!-- Page 1: Risk Analysis Section -->
+        <!-- Page 1: Design Consulting -->
         <div id="page-1" class="snap-item min-h-screen">
+            <div class="w-full max-w-3xl">
+                <header class="text-center mb-10">
+                    <h1 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Tư Vấn Thiết Kế Hệ Thống ✨</h1>
+                    <p class="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto">
+                        Nhập yêu cầu thiết kế để nhận bản tư vấn chi tiết, áp dụng các tiêu chuẩn TCVN và tiêu chuẩn quốc tế.
+                    </p>
+                </header>
+                <div class="p-6 bg-white rounded-xl shadow-sm">
+                    <label for="design-input" class="block text-lg font-semibold mb-2 text-slate-700">Mô tả yêu cầu thiết kế:</label>
+                    <textarea id="design-input" class="w-full h-32 p-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm text-slate-700" placeholder="Ví dụ: Thiết kế hệ thống HVAC cho một khách sạn 4 sao với 100 phòng, tại Hà Nội."></textarea>
+                    <button id="design-btn" class="mt-4 w-full md:w-auto px-6 py-3 bg-cyan-600 text-white font-bold rounded-lg hover:bg-cyan-700 transition-colors duration-200">Gửi yêu cầu</button>
+                    
+                    <div id="aiResponseContainerDesign" class="mt-6 hidden">
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 border-b pb-2">Kết quả Tư vấn Thiết kế:</h3>
+                        <div id="loaderDesign" class="flex justify-center items-center py-4">
+                            <svg class="animate-spin h-8 w-8 text-cyan-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </div>
+                        <div id="aiResponseDesign" class="p-4 bg-slate-50 rounded-lg border border-slate-200 text-slate-700"></div>
+                        <div id="share-design-btn-container" class="mt-4 hidden">
+                            <button id="share-design-btn" class="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition-colors duration-200">Chia sẻ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2: Risk Analysis Section -->
+        <div id="page-2" class="snap-item min-h-screen">
             <div class="w-full max-w-3xl">
                 <header class="text-center mb-10">
                     <h1 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Phân Tích Rủi Ro & Giải Pháp AI ✨</h1>
@@ -87,13 +124,16 @@
                             </svg>
                         </div>
                         <div id="aiResponseRisk" class="p-4 bg-slate-50 rounded-lg border border-slate-200 text-slate-700"></div>
+                        <div id="share-risk-btn-container" class="mt-4 hidden">
+                            <button id="share-risk-btn" class="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition-colors duration-200">Chia sẻ</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Page 2: Consulting Section -->
-        <div id="page-2" class="snap-item min-h-screen">
+        <!-- Page 3: Consulting Section -->
+        <div id="page-3" class="snap-item min-h-screen">
             <div class="w-full max-w-3xl">
                  <header class="text-center mb-10">
                     <h1 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Tư Vấn & Lời Khuyên Chuyên Gia ✨</h1>
@@ -115,6 +155,9 @@
                             </svg>
                         </div>
                         <div id="aiResponseAdvice" class="p-4 bg-slate-50 rounded-lg border border-slate-200 text-slate-700"></div>
+                        <div id="share-advice-btn-container" class="mt-4 hidden">
+                            <button id="share-advice-btn" class="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition-colors duration-200">Chia sẻ</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -122,8 +165,9 @@
     </div>
     
     <footer class="fixed bottom-0 left-0 right-0 p-4 flex justify-center space-x-4 bg-white bg-opacity-80 backdrop-blur-sm z-10">
-        <button id="nav-btn-1" class="px-4 py-2 rounded-full bg-cyan-600 text-white font-bold text-sm">Giải pháp</button>
-        <button id="nav-btn-2" class="px-4 py-2 rounded-full bg-slate-200 text-slate-700 font-bold text-sm">Tư vấn</button>
+        <button id="nav-btn-1" class="px-4 py-2 rounded-full bg-cyan-600 text-white font-bold text-sm">Thiết kế</button>
+        <button id="nav-btn-2" class="px-4 py-2 rounded-full bg-slate-200 text-slate-700 font-bold text-sm">Giải pháp</button>
+        <button id="nav-btn-3" class="px-4 py-2 rounded-full bg-slate-200 text-slate-700 font-bold text-sm">Tư vấn</button>
     </footer>
 
     <script>
@@ -132,15 +176,34 @@
             const pageContainer = document.getElementById('page-container');
             const navBtn1 = document.getElementById('nav-btn-1');
             const navBtn2 = document.getElementById('nav-btn-2');
+            const navBtn3 = document.getElementById('nav-btn-3');
             const page1 = document.getElementById('page-1');
             const page2 = document.getElementById('page-2');
+            const page3 = document.getElementById('page-3');
 
+            // API Functionality - Design
+            const designBtn = document.getElementById('design-btn');
+            const designInput = document.getElementById('design-input');
+            const aiResponseContainerDesign = document.getElementById('aiResponseContainerDesign');
+            const loaderDesign = document.getElementById('loaderDesign');
+            const aiResponseDesign = document.getElementById('aiResponseDesign');
+            const shareDesignBtnContainer = document.getElementById('share-design-btn-container');
+            const shareDesignBtn = document.getElementById('share-design-btn');
+            const suggestionContainerDesign = document.createElement('div');
+            suggestionContainerDesign.className = "mt-4 flex flex-wrap gap-2 hidden";
+            const suggestionTitleDesign = document.createElement('p');
+            suggestionTitleDesign.className = "text-sm text-slate-500 w-full";
+            suggestionTitleDesign.innerText = "Gợi ý câu hỏi tiếp theo:";
+            suggestionContainerDesign.appendChild(suggestionTitleDesign);
+            
             // API Functionality - Risk Analysis
             const analyzeBtn = document.getElementById('analyze-btn');
             const riskInput = document.getElementById('risk-input');
             const aiResponseContainerRisk = document.getElementById('aiResponseContainerRisk');
             const loaderRisk = document.getElementById('loaderRisk');
             const aiResponseRisk = document.getElementById('aiResponseRisk');
+            const shareRiskBtnContainer = document.getElementById('share-risk-btn-container');
+            const shareRiskBtn = document.getElementById('share-risk-btn');
             const suggestionContainerRisk = document.createElement('div');
             suggestionContainerRisk.className = "mt-4 flex flex-wrap gap-2 hidden";
             const suggestionTitleRisk = document.createElement('p');
@@ -154,19 +217,22 @@
             const aiResponseContainerAdvice = document.getElementById('aiResponseContainerAdvice');
             const loaderAdvice = document.getElementById('loaderAdvice');
             const aiResponseAdvice = document.getElementById('aiResponseAdvice');
+            const shareAdviceBtnContainer = document.getElementById('share-advice-btn-container');
+            const shareAdviceBtn = document.getElementById('share-advice-btn');
             const suggestionContainerAdvice = document.createElement('div');
             suggestionContainerAdvice.className = "mt-4 flex flex-wrap gap-2 hidden";
             const suggestionTitleAdvice = document.createElement('p');
             suggestionTitleAdvice.className = "text-sm text-slate-500 w-full";
             suggestionTitleAdvice.innerText = "Gợi ý câu hỏi tiếp theo:";
             suggestionContainerAdvice.appendChild(suggestionTitleAdvice);
-            
-            const makeApiCall = async (prompt, responseContainer, loaderElement, responseElement, suggestionsContainer, retryCount = 0) => {
+
+            const makeApiCall = async (prompt, responseContainer, loaderElement, responseElement, suggestionsContainer, userInput, shareBtnContainer, retryCount = 0) => {
                 const maxRetries = 3;
                 responseContainer.classList.remove('hidden');
                 loaderElement.classList.remove('hidden');
                 responseElement.innerHTML = '';
-                suggestionsContainer.classList.add('hidden');
+                if(suggestionsContainer) suggestionsContainer.classList.add('hidden');
+                if(shareBtnContainer) shareBtnContainer.classList.add('hidden');
                 
                 try {
                     let chatHistory = [];
@@ -205,10 +271,13 @@
                         
                         const htmlContent = marked.parse(parsedJson.response);
                         responseElement.innerHTML = htmlContent;
+                        if(shareBtnContainer) shareBtnContainer.classList.remove('hidden');
 
-                        if (parsedJson.suggestions && parsedJson.suggestions.length > 0) {
+                        if (parsedJson.suggestions && parsedJson.suggestions.length > 0 && suggestionsContainer) {
                             suggestionsContainer.innerHTML = '';
-                            suggestionsContainer.appendChild(suggestionTitleRisk.cloneNode(true));
+                            const clonedTitle = suggestionTitleRisk.cloneNode(true);
+                            clonedTitle.innerText = "Gợi ý câu hỏi tiếp theo:";
+                            suggestionsContainer.appendChild(clonedTitle);
                             parsedJson.suggestions.forEach(suggestion => {
                                 const btn = document.createElement('button');
                                 btn.className = "px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium hover:bg-slate-200 transition-colors duration-200";
@@ -217,9 +286,12 @@
                                     if (responseElement === aiResponseRisk) {
                                         riskInput.value = suggestion;
                                         analyzeBtn.click();
-                                    } else {
+                                    } else if (responseElement === aiResponseAdvice) {
                                         adviceInput.value = suggestion;
                                         adviceBtn.click();
+                                    } else if (responseElement === aiResponseDesign) {
+                                         designInput.value = suggestion;
+                                         designBtn.click();
                                     }
                                 };
                                 suggestionsContainer.appendChild(btn);
@@ -232,7 +304,7 @@
                 } catch (error) {
                     if (retryCount < maxRetries) {
                         const delay = Math.pow(2, retryCount) * 1000;
-                        setTimeout(() => makeApiCall(prompt, responseContainer, loaderElement, responseElement, suggestionsContainer, retryCount + 1), delay);
+                        setTimeout(() => makeApiCall(prompt, responseContainer, loaderElement, responseElement, suggestionsContainer, userInput, shareBtnContainer, retryCount + 1), delay);
                     } else {
                         responseElement.innerText = `Có lỗi xảy ra: ${error.message}. Vui lòng thử lại sau.`;
                         console.error('Error fetching AI response:', error);
@@ -241,8 +313,25 @@
                     loaderElement.classList.add('hidden');
                 }
             };
-
+            
             // Event Listeners for new features
+            designBtn.addEventListener('click', async () => {
+                const userDesign = designInput.value.trim();
+                if (!userDesign) {
+                    alert('Vui lòng nhập yêu cầu thiết kế.');
+                    return;
+                }
+                aiResponseDesign.innerHTML = '';
+                aiResponseContainerDesign.classList.add('hidden');
+
+                const prompt = `Hãy đóng vai trò là một kỹ sư cơ điện (M&E) và HVAC có kinh nghiệm. Dựa trên yêu cầu thiết kế sau, đưa ra bản tư vấn chi tiết về các giải pháp kỹ thuật, tiêu chuẩn áp dụng (bao gồm TCVN 5687:2024 và các tiêu chuẩn quốc tế), và các yếu tố cần lưu ý. Sử dụng Markdown để định dạng câu trả lời với các tiêu đề, danh sách, và in đậm. Sau đó, hãy đưa ra 3 gợi ý câu hỏi tiếp theo có liên quan đến yêu cầu này. Trả lời bằng JSON với hai trường 'response' cho câu trả lời chi tiết và 'suggestions' là một mảng chuỗi cho các gợi ý. Yêu cầu: ${userDesign}`;
+                makeApiCall(prompt, aiResponseContainerDesign, loaderDesign, aiResponseDesign, suggestionContainerDesign, userDesign, shareDesignBtnContainer);
+                if (aiResponseContainerDesign.contains(suggestionContainerDesign)) {
+                    aiResponseContainerDesign.removeChild(suggestionContainerDesign);
+                }
+                aiResponseContainerDesign.appendChild(suggestionContainerDesign);
+            });
+
             analyzeBtn.addEventListener('click', async () => {
                 const userRisk = riskInput.value.trim();
                 if (!userRisk) {
@@ -253,7 +342,7 @@
                 aiResponseContainerRisk.classList.add('hidden');
 
                 const prompt = `Hãy đóng vai trò là một kỹ sư cơ điện (M&E) và HVAC có kinh nghiệm. Phân tích một cách chi tiết tình huống sau đây và đề xuất các giải pháp khả thi. Sử dụng Markdown để định dạng câu trả lời với các tiêu đề, danh sách, và in đậm. Sau đó, hãy đưa ra 3 gợi ý câu hỏi tiếp theo có liên quan đến tình huống này. Trả lời bằng JSON với hai trường 'response' cho câu trả lời chi tiết và 'suggestions' là một mảng chuỗi cho các gợi ý. Tình huống: ${userRisk}`;
-                makeApiCall(prompt, aiResponseContainerRisk, loaderRisk, aiResponseRisk, suggestionContainerRisk);
+                makeApiCall(prompt, aiResponseContainerRisk, loaderRisk, aiResponseRisk, suggestionContainerRisk, userRisk, shareRiskBtnContainer);
                 if (aiResponseContainerRisk.contains(suggestionContainerRisk)) {
                     aiResponseContainerRisk.removeChild(suggestionContainerRisk);
                 }
@@ -270,31 +359,50 @@
                 aiResponseContainerAdvice.classList.add('hidden');
                 
                 const prompt = `Hãy đóng vai trò là một kỹ sư M&E/HVAC có kinh nghiệm. Dựa trên câu hỏi/tình huống sau, đưa ra lời khuyên chuyên nghiệp và hữu ích. Sử dụng Markdown để định dạng câu trả lời với các tiêu đề, danh sách, và in đậm. Sau đó, hãy đưa ra 3 gợi ý câu hỏi tiếp theo có liên quan đến tình huống này. Trả lời bằng JSON với hai trường 'response' cho câu trả lời chi tiết và 'suggestions' là một mảng chuỗi cho các gợi ý. Tình huống: ${userAdvice}`;
-                makeApiCall(prompt, aiResponseContainerAdvice, loaderAdvice, aiResponseAdvice, suggestionContainerAdvice);
+                makeApiCall(prompt, aiResponseContainerAdvice, loaderAdvice, aiResponseAdvice, suggestionContainerAdvice, userAdvice, shareAdviceBtnContainer);
                 if (aiResponseContainerAdvice.contains(suggestionContainerAdvice)) {
                     aiResponseContainerAdvice.removeChild(suggestionContainerAdvice);
                 }
                  aiResponseContainerAdvice.appendChild(suggestionContainerAdvice);
             });
             
+            // Share button functionality
+            const copyToClipboard = (text) => {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('Nội dung đã được sao chép vào clipboard!');
+            };
+
+            shareDesignBtn.addEventListener('click', () => {
+                copyToClipboard(aiResponseDesign.innerText);
+            });
+
+            shareRiskBtn.addEventListener('click', () => {
+                copyToClipboard(aiResponseRisk.innerText);
+            });
+            
+            shareAdviceBtn.addEventListener('click', () => {
+                copyToClipboard(aiResponseAdvice.innerText);
+            });
+
             // UI Navigation
             const updateNavButtons = (pageIndex) => {
-                navBtn1.classList.remove('bg-cyan-600', 'text-white');
-                navBtn1.classList.add('bg-slate-200', 'text-slate-700');
-                navBtn2.classList.remove('bg-cyan-600', 'text-white');
-                navBtn2.classList.add('bg-slate-200', 'text-slate-700');
-                if (pageIndex === 0) {
-                    navBtn1.classList.add('bg-cyan-600', 'text-white');
-                    navBtn1.classList.remove('bg-slate-200', 'text-slate-700');
-                } else {
-                    navBtn2.classList.add('bg-cyan-600', 'text-white');
-                    navBtn2.classList.remove('bg-slate-200', 'text-slate-700');
-                }
+                const navButtons = [navBtn1, navBtn2, navBtn3];
+                navButtons.forEach(btn => {
+                    btn.classList.remove('bg-cyan-600', 'text-white');
+                    btn.classList.add('bg-slate-200', 'text-slate-700');
+                });
+                navButtons[pageIndex].classList.add('bg-cyan-600', 'text-white');
+                navButtons[pageIndex].classList.remove('bg-slate-200', 'text-slate-700');
             };
             
             navBtn1.addEventListener('click', () => {
                 pageContainer.scrollTo({
-                    left: 0,
+                    left: page1.offsetLeft,
                     behavior: 'smooth'
                 });
                 updateNavButtons(0);
@@ -308,14 +416,25 @@
                 updateNavButtons(1);
             });
 
+            navBtn3.addEventListener('click', () => {
+                 pageContainer.scrollTo({
+                    left: page3.offsetLeft,
+                    behavior: 'smooth'
+                });
+                updateNavButtons(2);
+            });
+
             pageContainer.addEventListener('scroll', () => {
                 const scrollLeft = pageContainer.scrollLeft;
-                const pageOneOffset = page1.offsetLeft;
-                if (scrollLeft < pageOneOffset + page1.offsetWidth / 2) {
-                    updateNavButtons(0);
-                } else {
-                    updateNavButtons(1);
+                const pageOffsets = [page1.offsetLeft, page2.offsetLeft, page3.offsetLeft];
+                let currentPage = 0;
+                if (scrollLeft > pageOffsets[1] - page1.offsetWidth / 2) {
+                    currentPage = 1;
                 }
+                if (scrollLeft > pageOffsets[2] - page1.offsetWidth / 2) {
+                    currentPage = 2;
+                }
+                updateNavButtons(currentPage);
             });
 
             updateNavButtons(0); // Set initial active button
