@@ -80,7 +80,14 @@
                     </p>
                 </header>
                 <div class="p-6 bg-white rounded-xl shadow-sm">
-                    <label for="design-input" class="block text-lg font-semibold mb-2 text-slate-700">Mô tả yêu cầu thiết kế:</label>
+                    <div class="mb-4">
+                        <label class="block text-lg font-semibold mb-2 text-slate-700">Nhập mô tả hoặc tải ảnh lên:</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="file" id="design-file-input" accept="image/*" class="hidden">
+                            <label for="design-file-input" class="cursor-pointer px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition-colors duration-200">Tải ảnh lên</label>
+                            <button id="design-paste-btn" class="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition-colors duration-200">Dán ảnh</button>
+                        </div>
+                    </div>
                     <textarea id="design-input" class="w-full h-32 p-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm text-slate-700" placeholder="Ví dụ: Thiết kế hệ thống HVAC cho một khách sạn 4 sao với 100 phòng, tại Hà Nội."></textarea>
                     <button id="design-btn" class="mt-4 w-full md:w-auto px-6 py-3 bg-cyan-600 text-white font-bold rounded-lg hover:bg-cyan-700 transition-colors duration-200">Gửi yêu cầu</button>
                     
@@ -111,8 +118,15 @@
                     </p>
                 </header>
                 <div class="p-6 bg-white rounded-xl shadow-sm">
-                    <label for="risk-input" class="block text-lg font-semibold mb-2 text-slate-700">Mô tả tình huống:</label>
-                    <textarea id="risk-input" class="w-full h-32 p-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm text-slate-700" placeholder="Ví dụ: Cần tư vấn giải pháp HVAC tiết kiệm năng lượng cho một tòa nhà văn phòng 5 tầng."></textarea>
+                    <div class="mb-4">
+                        <label class="block text-lg font-semibold mb-2 text-slate-700">Nhập mô tả hoặc tải ảnh lên:</label>
+                        <div class="flex items-center space-x-2">
+                             <input type="file" id="risk-file-input" accept="image/*" class="hidden">
+                             <label for="risk-file-input" class="cursor-pointer px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition-colors duration-200">Tải ảnh lên</label>
+                             <button id="risk-paste-btn" class="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition-colors duration-200">Dán ảnh</button>
+                        </div>
+                    </div>
+                    <textarea id="risk-input" class="w-full h-32 p-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm text-slate-700" placeholder="Hoặc nhập mô tả ở đây. Ví dụ: Cần tư vấn giải pháp HVAC tiết kiệm năng lượng cho một tòa nhà văn phòng 5 tầng."></textarea>
                     <button id="analyze-btn" class="mt-4 w-full md:w-auto px-6 py-3 bg-cyan-600 text-white font-bold rounded-lg hover:bg-cyan-700 transition-colors duration-200">Gửi yêu cầu</button>
                     
                     <div id="aiResponseContainerRisk" class="mt-6 hidden">
@@ -142,8 +156,15 @@
                     </p>
                 </header>
                 <div class="p-6 bg-white rounded-xl shadow-sm">
-                    <label for="advice-input" class="block text-lg font-semibold mb-2 text-slate-700">Câu hỏi hoặc tình huống của bạn:</label>
-                    <textarea id="advice-input" class="w-full h-32 p-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm text-slate-700" placeholder="Ví dụ: Làm thế nào để tối ưu hóa hiệu suất năng lượng cho hệ thống điều hòa?"></textarea>
+                     <div class="mb-4">
+                        <label class="block text-lg font-semibold mb-2 text-slate-700">Nhập mô tả hoặc tải ảnh lên:</label>
+                        <div class="flex items-center space-x-2">
+                             <input type="file" id="advice-file-input" accept="image/*" class="hidden">
+                             <label for="advice-file-input" class="cursor-pointer px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition-colors duration-200">Tải ảnh lên</label>
+                             <button id="advice-paste-btn" class="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition-colors duration-200">Dán ảnh</button>
+                        </div>
+                    </div>
+                    <textarea id="advice-input" class="w-full h-32 p-4 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm text-slate-700" placeholder="Hoặc nhập mô tả ở đây. Ví dụ: Làm thế nào để tối ưu hóa hiệu suất năng lượng cho hệ thống điều hòa?"></textarea>
                     <button id="advice-btn" class="mt-4 w-full md:w-auto px-6 py-3 bg-cyan-600 text-white font-bold rounded-lg hover:bg-cyan-700 transition-colors duration-200">Nhận tư vấn</button>
                     
                     <div id="aiResponseContainerAdvice" class="mt-6 hidden">
@@ -180,7 +201,7 @@
             const page1 = document.getElementById('page-1');
             const page2 = document.getElementById('page-2');
             const page3 = document.getElementById('page-3');
-
+            
             // API Functionality - Design
             const designBtn = document.getElementById('design-btn');
             const designInput = document.getElementById('design-input');
@@ -189,6 +210,13 @@
             const aiResponseDesign = document.getElementById('aiResponseDesign');
             const shareDesignBtnContainer = document.getElementById('share-design-btn-container');
             const shareDesignBtn = document.getElementById('share-design-btn');
+            const designFile = document.getElementById('design-file-input');
+            const designPaste = document.getElementById('design-paste-btn');
+            const designImagePreview = document.createElement('img');
+            designImagePreview.className = "mt-4 max-w-full h-auto hidden";
+            designInput.parentNode.insertBefore(designImagePreview, designInput);
+            const designBase64Data = { data: null, mimeType: null };
+            
             const suggestionContainerDesign = document.createElement('div');
             suggestionContainerDesign.className = "mt-4 flex flex-wrap gap-2 hidden";
             const suggestionTitleDesign = document.createElement('p');
@@ -204,6 +232,13 @@
             const aiResponseRisk = document.getElementById('aiResponseRisk');
             const shareRiskBtnContainer = document.getElementById('share-risk-btn-container');
             const shareRiskBtn = document.getElementById('share-risk-btn');
+            const riskFile = document.getElementById('risk-file-input');
+            const riskPaste = document.getElementById('risk-paste-btn');
+            const riskImagePreview = document.createElement('img');
+            riskImagePreview.className = "mt-4 max-w-full h-auto hidden";
+            riskInput.parentNode.insertBefore(riskImagePreview, riskInput);
+            const riskBase64Data = { data: null, mimeType: null };
+            
             const suggestionContainerRisk = document.createElement('div');
             suggestionContainerRisk.className = "mt-4 flex flex-wrap gap-2 hidden";
             const suggestionTitleRisk = document.createElement('p');
@@ -219,14 +254,21 @@
             const aiResponseAdvice = document.getElementById('aiResponseAdvice');
             const shareAdviceBtnContainer = document.getElementById('share-advice-btn-container');
             const shareAdviceBtn = document.getElementById('share-advice-btn');
+            const adviceFile = document.getElementById('advice-file-input');
+            const advicePaste = document.getElementById('advice-paste-btn');
+            const adviceImagePreview = document.createElement('img');
+            adviceImagePreview.className = "mt-4 max-w-full h-auto hidden";
+            adviceInput.parentNode.insertBefore(adviceImagePreview, adviceInput);
+            const adviceBase64Data = { data: null, mimeType: null };
+            
             const suggestionContainerAdvice = document.createElement('div');
             suggestionContainerAdvice.className = "mt-4 flex flex-wrap gap-2 hidden";
             const suggestionTitleAdvice = document.createElement('p');
             suggestionTitleAdvice.className = "text-sm text-slate-500 w-full";
             suggestionTitleAdvice.innerText = "Gợi ý câu hỏi tiếp theo:";
             suggestionContainerAdvice.appendChild(suggestionTitleAdvice);
-
-            const makeApiCall = async (prompt, responseContainer, loaderElement, responseElement, suggestionsContainer, userInput, shareBtnContainer, retryCount = 0) => {
+            
+            const makeApiCall = async (prompt, responseContainer, loaderElement, responseElement, suggestionsContainer, userInput, shareBtnContainer, base64Data, retryCount = 0) => {
                 const maxRetries = 3;
                 responseContainer.classList.remove('hidden');
                 loaderElement.classList.remove('hidden');
@@ -235,8 +277,10 @@
                 if(shareBtnContainer) shareBtnContainer.classList.add('hidden');
                 
                 try {
-                    let chatHistory = [];
-                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                    if (base64Data.data) {
+                        chatHistory[0].parts.push({ inlineData: { mimeType: base64Data.mimeType, data: base64Data.data } });
+                    }
                     const payload = { 
                         contents: chatHistory,
                         generationConfig: {
@@ -304,7 +348,7 @@
                 } catch (error) {
                     if (retryCount < maxRetries) {
                         const delay = Math.pow(2, retryCount) * 1000;
-                        setTimeout(() => makeApiCall(prompt, responseContainer, loaderElement, responseElement, suggestionsContainer, userInput, shareBtnContainer, retryCount + 1), delay);
+                        setTimeout(() => makeApiCall(prompt, responseContainer, loaderElement, responseElement, suggestionsContainer, userInput, shareBtnContainer, base64Data, retryCount + 1), delay);
                     } else {
                         responseElement.innerText = `Có lỗi xảy ra: ${error.message}. Vui lòng thử lại sau.`;
                         console.error('Error fetching AI response:', error);
@@ -313,58 +357,6 @@
                     loaderElement.classList.add('hidden');
                 }
             };
-            
-            // Event Listeners for new features
-            designBtn.addEventListener('click', async () => {
-                const userDesign = designInput.value.trim();
-                if (!userDesign) {
-                    alert('Vui lòng nhập yêu cầu thiết kế.');
-                    return;
-                }
-                aiResponseDesign.innerHTML = '';
-                aiResponseContainerDesign.classList.add('hidden');
-
-                const prompt = `Hãy đóng vai trò là một kỹ sư cơ điện (M&E) và HVAC có kinh nghiệm. Dựa trên yêu cầu thiết kế sau, đưa ra bản tư vấn chi tiết về các giải pháp kỹ thuật, tiêu chuẩn áp dụng (bao gồm TCVN 5687:2024 và các tiêu chuẩn quốc tế), và các yếu tố cần lưu ý. Sử dụng Markdown để định dạng câu trả lời với các tiêu đề, danh sách, và in đậm. Sau đó, hãy đưa ra 3 gợi ý câu hỏi tiếp theo có liên quan đến yêu cầu này. Trả lời bằng JSON với hai trường 'response' cho câu trả lời chi tiết và 'suggestions' là một mảng chuỗi cho các gợi ý. Yêu cầu: ${userDesign}`;
-                makeApiCall(prompt, aiResponseContainerDesign, loaderDesign, aiResponseDesign, suggestionContainerDesign, userDesign, shareDesignBtnContainer);
-                if (aiResponseContainerDesign.contains(suggestionContainerDesign)) {
-                    aiResponseContainerDesign.removeChild(suggestionContainerDesign);
-                }
-                aiResponseContainerDesign.appendChild(suggestionContainerDesign);
-            });
-
-            analyzeBtn.addEventListener('click', async () => {
-                const userRisk = riskInput.value.trim();
-                if (!userRisk) {
-                    alert('Vui lòng nhập một rủi ro để phân tích.');
-                    return;
-                }
-                aiResponseRisk.innerHTML = '';
-                aiResponseContainerRisk.classList.add('hidden');
-
-                const prompt = `Hãy đóng vai trò là một kỹ sư cơ điện (M&E) và HVAC có kinh nghiệm. Phân tích một cách chi tiết tình huống sau đây và đề xuất các giải pháp khả thi. Sử dụng Markdown để định dạng câu trả lời với các tiêu đề, danh sách, và in đậm. Sau đó, hãy đưa ra 3 gợi ý câu hỏi tiếp theo có liên quan đến tình huống này. Trả lời bằng JSON với hai trường 'response' cho câu trả lời chi tiết và 'suggestions' là một mảng chuỗi cho các gợi ý. Tình huống: ${userRisk}`;
-                makeApiCall(prompt, aiResponseContainerRisk, loaderRisk, aiResponseRisk, suggestionContainerRisk, userRisk, shareRiskBtnContainer);
-                if (aiResponseContainerRisk.contains(suggestionContainerRisk)) {
-                    aiResponseContainerRisk.removeChild(suggestionContainerRisk);
-                }
-                 aiResponseContainerRisk.appendChild(suggestionContainerRisk);
-            });
-
-             adviceBtn.addEventListener('click', async () => {
-                const userAdvice = adviceInput.value.trim();
-                if (!userAdvice) {
-                    alert('Vui lòng nhập câu hỏi hoặc tình huống của bạn.');
-                    return;
-                }
-                aiResponseAdvice.innerHTML = '';
-                aiResponseContainerAdvice.classList.add('hidden');
-                
-                const prompt = `Hãy đóng vai trò là một kỹ sư M&E/HVAC có kinh nghiệm. Dựa trên câu hỏi/tình huống sau, đưa ra lời khuyên chuyên nghiệp và hữu ích. Sử dụng Markdown để định dạng câu trả lời với các tiêu đề, danh sách, và in đậm. Sau đó, hãy đưa ra 3 gợi ý câu hỏi tiếp theo có liên quan đến tình huống này. Trả lời bằng JSON với hai trường 'response' cho câu trả lời chi tiết và 'suggestions' là một mảng chuỗi cho các gợi ý. Tình huống: ${userAdvice}`;
-                makeApiCall(prompt, aiResponseContainerAdvice, loaderAdvice, aiResponseAdvice, suggestionContainerAdvice, userAdvice, shareAdviceBtnContainer);
-                if (aiResponseContainerAdvice.contains(suggestionContainerAdvice)) {
-                    aiResponseContainerAdvice.removeChild(suggestionContainerAdvice);
-                }
-                 aiResponseContainerAdvice.appendChild(suggestionContainerAdvice);
-            });
             
             // Share button functionality
             const copyToClipboard = (text) => {
@@ -389,6 +381,106 @@
                 copyToClipboard(aiResponseAdvice.innerText);
             });
 
+            // Image handling function
+            const handleImageInput = (fileInput, imagePreview, base64Data) => {
+                const file = fileInput.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imagePreview.src = e.target.result;
+                        imagePreview.classList.remove('hidden');
+                        base64Data.data = e.target.result.split(',')[1];
+                        base64Data.mimeType = file.type;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+
+            const handleImagePaste = (e, imagePreview, base64Data, inputElement) => {
+                const items = e.clipboardData.items;
+                for (const item of items) {
+                    if (item.type.startsWith('image/')) {
+                        const file = item.getAsFile();
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            imagePreview.src = e.target.result;
+                            imagePreview.classList.remove('hidden');
+                            base64Data.data = e.target.result.split(',')[1];
+                            base64Data.mimeType = file.type;
+                        };
+                        reader.readAsDataURL(file);
+                        e.preventDefault();
+                        return;
+                    }
+                }
+                // If no image, let the text paste
+                const text = e.clipboardData.getData('text/plain');
+                inputElement.value += text;
+                e.preventDefault();
+            };
+
+            // Event Listeners for image inputs
+            designInput.addEventListener('paste', (e) => handleImagePaste(e, designImagePreview, designBase64Data, designInput));
+            designFile.addEventListener('change', () => handleImageInput(designFile, designImagePreview, designBase64Data));
+            
+            riskInput.addEventListener('paste', (e) => handleImagePaste(e, riskImagePreview, riskBase64Data, riskInput));
+            riskFile.addEventListener('change', () => handleImageInput(riskFile, riskImagePreview, riskBase64Data));
+            
+            adviceInput.addEventListener('paste', (e) => handleImagePaste(e, adviceImagePreview, adviceBase64Data, adviceInput));
+            adviceFile.addEventListener('change', () => handleImageInput(adviceFile, adviceImagePreview, adviceBase64Data));
+
+            // API Event Listeners
+            designBtn.addEventListener('click', async () => {
+                const userDesign = designInput.value.trim();
+                if (!userDesign && !designBase64Data.data) {
+                    alert('Vui lòng nhập yêu cầu thiết kế hoặc tải lên một hình ảnh.');
+                    return;
+                }
+                aiResponseDesign.innerHTML = '';
+                aiResponseContainerDesign.classList.add('hidden');
+
+                const prompt = `Hãy đóng vai trò là một kỹ sư cơ điện (M&E) và HVAC có kinh nghiệm. Dựa trên yêu cầu thiết kế sau, đưa ra bản tư vấn chi tiết về các giải pháp kỹ thuật, tiêu chuẩn áp dụng (bao gồm TCVN 5687:2024 và các tiêu chuẩn quốc tế), và các yếu tố cần lưu ý. Sử dụng Markdown để định dạng câu trả lời với các tiêu đề, danh sách, và in đậm. Sau đó, hãy đưa ra 3 gợi ý câu hỏi tiếp theo có liên quan đến yêu cầu này. Trả lời bằng JSON với hai trường 'response' cho câu trả lời chi tiết và 'suggestions' là một mảng chuỗi cho các gợi ý. Yêu cầu: ${userDesign}`;
+                makeApiCall(prompt, aiResponseContainerDesign, loaderDesign, aiResponseDesign, suggestionContainerDesign, userDesign, shareDesignBtnContainer, designBase64Data);
+                if (aiResponseContainerDesign.contains(suggestionContainerDesign)) {
+                    aiResponseContainerDesign.removeChild(suggestionContainerDesign);
+                }
+                aiResponseContainerDesign.appendChild(suggestionContainerDesign);
+            });
+
+            analyzeBtn.addEventListener('click', async () => {
+                const userRisk = riskInput.value.trim();
+                if (!userRisk && !riskBase64Data.data) {
+                    alert('Vui lòng nhập một rủi ro để phân tích hoặc tải lên một hình ảnh.');
+                    return;
+                }
+                aiResponseRisk.innerHTML = '';
+                aiResponseContainerRisk.classList.add('hidden');
+
+                const prompt = `Hãy đóng vai trò là một kỹ sư cơ điện (M&E) và HVAC có kinh nghiệm. Phân tích một cách chi tiết tình huống sau đây và đề xuất các giải pháp khả thi. Sử dụng Markdown để định dạng câu trả lời với các tiêu đề, danh sách, và in đậm. Sau đó, hãy đưa ra 3 gợi ý câu hỏi tiếp theo có liên quan đến tình huống này. Trả lời bằng JSON với hai trường 'response' cho câu trả lời chi tiết và 'suggestions' là một mảng chuỗi cho các gợi ý. Tình huống: ${userRisk}`;
+                makeApiCall(prompt, aiResponseContainerRisk, loaderRisk, aiResponseRisk, suggestionContainerRisk, userRisk, shareRiskBtnContainer, riskBase64Data);
+                if (aiResponseContainerRisk.contains(suggestionContainerRisk)) {
+                    aiResponseContainerRisk.removeChild(suggestionContainerRisk);
+                }
+                 aiResponseContainerRisk.appendChild(suggestionContainerRisk);
+            });
+
+             adviceBtn.addEventListener('click', async () => {
+                const userAdvice = adviceInput.value.trim();
+                if (!userAdvice && !adviceBase64Data.data) {
+                    alert('Vui lòng nhập câu hỏi hoặc tải lên một hình ảnh.');
+                    return;
+                }
+                aiResponseAdvice.innerHTML = '';
+                aiResponseContainerAdvice.classList.add('hidden');
+                
+                const prompt = `Hãy đóng vai trò là một kỹ sư M&E/HVAC có kinh nghiệm. Dựa trên câu hỏi/tình huống sau, đưa ra lời khuyên chuyên nghiệp và hữu ích. Sử dụng Markdown để định dạng câu trả lời với các tiêu đề, danh sách, và in đậm. Sau đó, hãy đưa ra 3 gợi ý câu hỏi tiếp theo có liên quan đến tình huống này. Trả lời bằng JSON với hai trường 'response' cho câu trả lời chi tiết và 'suggestions' là một mảng chuỗi cho các gợi ý. Tình huống: ${userAdvice}`;
+                makeApiCall(prompt, aiResponseContainerAdvice, loaderAdvice, aiResponseAdvice, suggestionContainerAdvice, userAdvice, shareAdviceBtnContainer, adviceBase64Data);
+                if (aiResponseContainerAdvice.contains(suggestionContainerAdvice)) {
+                    aiResponseContainerAdvice.removeChild(suggestionContainerAdvice);
+                }
+                 aiResponseContainerAdvice.appendChild(suggestionContainerAdvice);
+            });
+            
             // UI Navigation
             const updateNavButtons = (pageIndex) => {
                 const navButtons = [navBtn1, navBtn2, navBtn3];
