@@ -439,7 +439,7 @@
                 aiResponseDesign.innerHTML = '';
                 aiResponseContainerDesign.classList.add('hidden');
 
-                const prompt = `Hãy đóng vai trò là một kỹ sư cơ điện (M&E) và HVAC có kinh nghiệm. Dựa trên yêu cầu thiết kế sau, đưa ra bản tư vấn chi tiết về các giải pháp kỹ thuật, tiêu chuẩn áp dụng (bao gồm TCVN 5687:2024 và các tiêu chuẩn quốc tế), và các yếu tố cần lưu ý. Sử dụng Markdown để định dạng câu trả lời với các tiêu đề, danh sách, và in đậm. Sau đó, hãy đưa ra 3 gợi ý câu hỏi tiếp theo có liên quan đến yêu cầu này. Trả lời bằng JSON với hai trường 'response' cho câu trả lời chi tiết và 'suggestions' là một mảng chuỗi cho các gợi ý. Yêu cầu: ${userDesign}`;
+                const prompt = `Hãy đóng vai trò là một kỹ sư cơ điện (M&E) và HVAC có kinh nghiệm. Dựa trên yêu cầu thiết kế sau, đưa ra bản tư vấn chi tiết về các giải pháp kỹ thuật, tiêu chuẩn áp dụng (bao gồm TCVN và các tiêu chuẩn quốc tế), và các yếu tố cần lưu ý. Sử dụng Markdown để định dạng câu trả lời với các tiêu đề, danh sách, và in đậm. Sau đó, hãy đưa ra 3 gợi ý câu hỏi tiếp theo có liên quan đến yêu cầu này. Trả lời bằng JSON với hai trường 'response' cho câu trả lời chi tiết và 'suggestions' là một mảng chuỗi cho các gợi ý. Yêu cầu: ${userDesign}`;
                 makeApiCall(prompt, aiResponseContainerDesign, loaderDesign, aiResponseDesign, suggestionContainerDesign, userDesign, shareDesignBtnContainer, designBase64Data);
                 if (aiResponseContainerDesign.contains(suggestionContainerDesign)) {
                     aiResponseContainerDesign.removeChild(suggestionContainerDesign);
@@ -535,3 +535,4 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html>
+
